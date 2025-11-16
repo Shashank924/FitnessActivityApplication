@@ -19,7 +19,6 @@ public class ActivityController {
     @PostMapping
     public ResponseEntity<ActivityResponseDTO> saveActivity(@RequestBody ActivityRequestDTO requestDTO) {
         ActivityResponseDTO response = activityService.saveActivity(requestDTO);
-        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 

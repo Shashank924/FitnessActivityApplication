@@ -11,4 +11,12 @@ public class ActivityRequestDTO {
     private ActivityType activityType;
     private int durationInMinutes;
     private Map<String , Object> additionalMetrics;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

@@ -5,6 +5,7 @@ import com.fitness.userService.Dto.ResponseDto.UserResponseDTO;
 import com.fitness.userService.Service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,5 +22,10 @@ public class UserController {
     @PostMapping("/register")
     public UserResponseDTO registerUser(@Valid @RequestBody UserRequestDTO dto) {
         return userService.registerUser(dto);
+    }
+
+    @GetMapping("/validate/{userId}")
+    public ResponseEntity<Boolean> validateUserById(@PathVariable int userId) {
+        return ResponseEntity.ok(userService.validateUserById(userId));
     }
 }

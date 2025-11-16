@@ -19,14 +19,26 @@ public class ActivityService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private UserValidationService userValidationService;
+
     public ActivityResponseDTO saveActivity(ActivityRequestDTO dto) {
+        boolean userExists = userValidationService.validateUserById(dto.getUserId());
+
+        if(!userExists) {
+            throw new RuntimeException("Provide valid UserId");
+        }
+
         Activity activity = new Activity();
         mapper.map(dto , activity);
-
+        
         Activity savedActivity = activityRepository.save(activity);
 
         ActivityResponseDTO response = new ActivityResponseDTO();
+        System.out.println(response);
         mapper.map(savedActivity , response);
+
+        System.out.println(response);
 
         return response;
     }

@@ -6,13 +6,14 @@ import com.fitness.userService.Entity.User;
 import com.fitness.userService.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class UserService {
-
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private ModelMapper mapper;
 
     public UserResponseDTO getUserDetails(int id) {
@@ -35,6 +36,10 @@ public class UserService {
         mapper.map(savedUser , response);
 
         return response;
+    }
+
+    public Boolean validateUserById(int id) {
+        return userRepository.existsById(id);
     }
 
 }
